@@ -2,37 +2,37 @@
 
 window.App = () => {
     return {
-        
+
         'dCFdF': {
-            r(x){
+            r(x) {
                 return Math.round(x * 100.0 + 0.5) / 100.0
             },
-            'F': Alpine.$persist(3.5),
-            'dF': Alpine.$persist(0.3),
+            'Fl': Alpine.$persist(3.5),
+            'Fh': Alpine.$persist(0.3),
             'dC': Alpine.$persist(30),
             k() {
-                const F = this.F * 1.0
-                const dF = this.dF * 1.0
-                const k = (F + dF) / F
+                const Fl = this.Fl * 1.0
+                const Fh = this.Fh * 1.0
+                const k = Fh / Fl
                 return k
 
             },
             C() {
-                const k = this.k() * 1.0
+                const Fl = this.Fl * 1.0
+                const Fh = this.Fh * 1.0
                 const dC = this.dC * 1.0
-                const r = dC / (1 - 1 / k / k)
-                return this.r(r) / 100
+                const r = dC / (1 - (Fl / Fh) * (Fl / Fh))
+                return r
             },
             L() {
-                var d = 2 * 3.1415 * this.F * 1.0
-                d *= d
-                const CC = this.C() + this.dC * 1.0
-                d *= CC
-                return this.r(d) / 100
+                const Fh = this.Fh * 1.0
+                const C = this.C() * 1.0
+                const r = 1e6 / ((2 * Math.PI * Fh) * (2 * Math.PI * Fh) * C)
+                return r
             }
         },
         'DLN': {
-            r(x){
+            r(x) {
                 return Math.round(x * 100.0 + 0.5) / 100.0
             },
             'N': Alpine.$persist(1),
