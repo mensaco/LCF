@@ -43,6 +43,12 @@ window.App = () => {
                 const l = this.L * 1.0 / 2.54
                 const n = this.N * 1.0
                 return this.r(r * r * n * n / (9 * r + 10 * l))
+            },
+            LRR(){
+                const r = this.D * 1.0 / 2.0 
+                const l = this.L * 1.0 
+                const ar = l / r
+                return ar
             }
         }
 
