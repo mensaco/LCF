@@ -100,11 +100,16 @@
                 </div>
                 <div>
                     <label>C3[pF]</label>
-                    <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.C3())"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.C3())"></div>
+                        <input type="text" x-model="VZ.C3M" placeholder="E12 approximation">
+                    </div>
+                    
+                    
                 </div>
                 <div>
                     <label>Ce[pF]</label>
-                    <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.Ce())"></div>
+                    <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.Ce())"></div>                    
                 </div>
                 <div>
                     <label>F[MHz]</label>

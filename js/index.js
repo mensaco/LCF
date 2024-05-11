@@ -60,10 +60,12 @@ window.App = () => {
             C3() {
                 return this.C1 * 6.0;
             },
+            C3M:Alpine.$persist(1),
             Ce() {
                 const c1 = this.C1 * 1.0
                 const c2 = this.C2 * 1.0
-                const c3 = this.C3() * 1.0
+                const c3 = this.C3M ? this.C3M*1.0 : this.C3() * 1.0
+
                 const ce = c2 + c1 * c3 / (c1 + c3)
                 return ce
             },
