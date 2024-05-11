@@ -5,7 +5,7 @@ window.App = () => {
 
         'dCFdF': {
             r(x) {
-                return Math.round(x * 100.0 + 0.5) / 100.0
+                return Math.round(x * 100.0 + 0.4999) / 100.0
             },
             'Fl': Alpine.$persist(3.5),
             'Fh': Alpine.$persist(0.3),
@@ -33,7 +33,7 @@ window.App = () => {
         },
         'DLN': {
             r(x) {
-                return Math.round(x * 100.0 + 0.5) / 100.0
+                return Math.round(x * 100.0 + 0.4999) / 100.0
             },
             'N': Alpine.$persist(1),
             'D': Alpine.$persist(1),
@@ -44,12 +44,37 @@ window.App = () => {
                 const n = this.N * 1.0
                 return this.r(r * r * n * n / (9 * r + 10 * l))
             },
-            LRR(){
-                const r = this.D * 1.0 / 2.0 
-                const l = this.L * 1.0 
+            LRR() {
+                const r = this.D * 1.0 / 2.0
+                const l = this.L * 1.0
                 const ar = l / r
                 return ar
             }
+        },
+        'VZ': {
+            r(x) {
+                return Math.round(x * 100.0 + 0.4999) / 100.0
+            },
+            C1: Alpine.$persist(1),
+            C2: Alpine.$persist(1),
+            C3() {
+                return this.C1 * 6.0;
+            },
+            Ce() {
+                const c1 = this.C1 * 1.0
+                const c2 = this.C2 * 1.0
+                const c3 = this.C3() * 1.0
+                const ce = c2 + c1 * c3 / (c1 + c3)
+                return ce
+            },
+            L: Alpine.$persist(1),
+            F() {
+                const l = this.L * 1.0
+                const ce = this.Ce()
+                const f = 500 / (Math.PI * Math.sqrt(l * ce))
+                return f
+            }
+
         }
 
     }
