@@ -9,10 +9,25 @@
     <style type="text/tailwindcss">
         @layer utilities {
             input {
-                @apply p-1 w-full border border-slate-300 text-xl;
+                @apply p-1 w-full border border-slate-300 text-xl text-red-800;
             }
             label{
-                @apply  text-slate-700;
+                @apply  text-white/50 mb-1 block;
+            }
+            .card{
+                @apply p-3 bg-black/90 border border-slate-300 w-full md:w-[23rem];
+            }
+
+            .card > div {
+                @apply grid gap-y-5 items-start;
+            }
+
+            .card .title {
+                @apply text-xl px-3 py-1 text-white/90;
+            }
+
+            .bg-tiled{
+                background-image: url(/img/bg-tiled.bmp);
             }
         }
     </style>
@@ -20,102 +35,106 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body>
+<body class="bg-black/80 bg-tiled">
 
     <div class="" x-data="App()">
 
-        <div class="flex flex-wrap items-start gap-3 p-3">
+        <div class="flex flex-wrap items-stretch gap-3 p-3">
 
-            <div class="p-3 bg-slate-100 border border-slate-300 grid gap-y-5 w-full md:w-[23rem]">
-                <div class="text-xl px-3 py-1 bg-slate-300">F, dF, dC &Implies; C, L</div>
+            <div class="card">
                 <div>
-                    <label>Lower Frequency Fl[MHz]</label>
-                    <div><input type="number" x-model="dCFdF.Fl"></div>
-                </div>
-                <div>
-                    <label>Upper Frequency Fh[MHz]</label>
-                    <div><input type="number" x-model="dCFdF.Fh"></div>
-                </div>
-                <div>
-                    <label>Max Capacitance Change dC[pF]</label>
-                    <div><input type="number" x-model="dCFdF.dC"></div>
-                </div>
-
-                <div>
-                    <label>Fixed Parallel Capacitance C[pF]</label>
-                    <div class="text-xl text-red-800 font-semibold" x-text="dCFdF.r(dCFdF.C())"></div>
-                </div>
-
-                <div>
-                    <label>Inductance L[µH]</label>
-                    <div class="text-xl text-red-800 font-semibold" x-text="dCFdF.r(dCFdF.L())"></div>
-                </div>
-            </div>
-
-            <div class="p-3 bg-slate-100 border border-slate-300 grid gap-y-5 w-full md:w-[23rem]">
-                <div class="text-xl px-3 py-1 bg-slate-300">N, D, L &Implies; L</div>
-                <div>
-                    <label>N[windings]</label>
-                    <div><input type="number" x-model="DLN.N"></div>
-                </div>
-                <div>
-                    <label>Diameter[cm]</label>
-                    <div><input type="number" x-model="DLN.D"></div>
-                </div>
-                <div>
-                    <label>Length L[cm]</label>
-                    <div><input type="number" x-model="DLN.L"></div>
-                </div>
-
-
-
-                <div>
-                    <label>Induktance L[µH]</label>
-                    <div class="text-xl text-red-800 font-semibold" x-text="DLN.r(DLN.ToL())"></div>
-                </div>
-
-                <div>
-                    <label class="flex items-center gap-3"> Length/Radius[cm/cm] <span x-show="DLN.LRR() <= 0.8"
-                            class="material-symbols-outlined text-amber-500">bolt</span><span x-show="DLN.LRR() > 0.8"
-                            class="material-symbols-outlined text-green-500">check</span></label>
-                    <div class="text-xl text-red-800 font-semibold" x-text="DLN.r(DLN.LRR())"></div>
-                </div>
-            </div>
-
-
-
-            <div class="p-3 bg-slate-100 border border-slate-300 grid gap-y-5 w-full md:w-[23rem]">
-                <div class="text-xl px-3 py-1 bg-slate-300">Vackarz</div>
-                <div>
-                    <label>Induktance L[µH]</label>
-                    <div><input type="number" x-model="VZ.L"></div>
-                </div>
-                <div>
-                    <label>C1[pF]</label>
-                    <div><input type="number" x-model="VZ.C1"></div>
-                </div>
-                <div>
-                    <label>C2[pF]</label>
-                    <div><input type="number" x-model="VZ.C2"></div>
-                </div>
-                <div>
-                    <label>C3[pF]</label>
-                    <div class="flex items-center gap-3">
-                        <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.C3())"></div>
-                        <input type="text" x-model="VZ.C3M" placeholder="E12 approximation">
+                    <img src="/img/LCdC.png" class="border p-1" alt="">
+                    <div class="title">F, dF, ΔC &Implies; C, L</div>
+                    <div>
+                        <label>Lower Frequency Fl[MHz]</label>
+                        <div><input type="number" x-model="dCFdF.Fl"></div>
                     </div>
-                    
-                    
-                </div>
-                <div>
-                    <label>Ce[pF]</label>
-                    <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.Ce())"></div>                    
-                </div>
-                <div>
-                    <label>F[MHz]</label>
-                    <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.F())"></div>
-                </div>
+                    <div>
+                        <label>Upper Frequency Fh[MHz]</label>
+                        <div><input type="number" x-model="dCFdF.Fh"></div>
+                    </div>
+                    <div>
+                        <label>Max Capacitance Change ΔC[pF]</label>
+                        <div><input type="number" x-model="dCFdF.dC"></div>
+                    </div>
 
+                    <div>
+                        <label>Fixed Parallel Capacitance C[pF]</label>
+                        <div class="text-xl text-red-800 font-semibold" x-text="dCFdF.r(dCFdF.C())"></div>
+                    </div>
+
+                    <div>
+                        <label>Inductance L[µH]</label>
+                        <div class="text-xl text-red-800 font-semibold" x-text="dCFdF.r(dCFdF.L())"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="title">N, D, L &Implies; L</div>
+                    <div>
+                        <label>N[windings]</label>
+                        <div><input type="number" x-model="DLN.N"></div>
+                    </div>
+                    <div>
+                        <label>Diameter[cm]</label>
+                        <div><input type="number" x-model="DLN.D"></div>
+                    </div>
+                    <div>
+                        <label>Length L[cm]</label>
+                        <div><input type="number" x-model="DLN.L"></div>
+                    </div>
+
+
+
+                    <div>
+                        <label>Induktance L[µH]</label>
+                        <div class="text-xl text-red-800 font-semibold" x-text="DLN.r(DLN.ToL())"></div>
+                    </div>
+
+                    <div>
+                        <label class="flex items-center gap-3"> Length/Radius[cm/cm] <span x-show="DLN.LRR() <= 0.8"
+                                class="material-symbols-outlined text-amber-500">bolt</span><span
+                                x-show="DLN.LRR() > 0.8"
+                                class="material-symbols-outlined text-green-500">check</span></label>
+                        <div class="text-xl text-red-800 font-semibold" x-text="DLN.r(DLN.LRR())"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <img src="/img/Vackarz.png" class="border p-1" alt="">
+                    <div class="title">Vackarz</div>
+                    <div>
+                        <label>Induktance L[µH]</label>
+                        <div><input type="number" x-model="VZ.L"></div>
+                    </div>
+                    <div>
+                        <label>C1[pF]</label>
+                        <div><input type="number" x-model="VZ.C1"></div>
+                    </div>
+                    <div>
+                        <label>C2[pF]</label>
+                        <div><input type="number" x-model="VZ.C2"></div>
+                    </div>
+                    <div>
+                        <label>C3[pF]</label>
+                        <div class="flex justify-between items-center gap-3">
+                            <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.C3())"></div>
+                            <input type="text" x-model="VZ.C3M" class="w-64" placeholder="E12 approximation">
+                        </div>
+                    </div>
+                    <div>
+                        <label>Ce[pF]</label>
+                        <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.Ce())"></div>
+                    </div>
+                    <div>
+                        <label>F[MHz]</label>
+                        <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.F())"></div>
+                    </div>
+                </div>
             </div>
 
         </div>
