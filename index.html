@@ -30,7 +30,7 @@
                 background-image: url(/img/bg-tiled.bmp);
             }
             .calculated-value {
-                @apply text-green-300 font-semibold;
+                @apply text-white font-semibold;
             }
         }
     </style>
@@ -100,7 +100,7 @@
                         <label class="flex items-center gap-3"> Length/Radius[cm/cm] <span x-show="DLN.LRR() <= 0.8"
                                 class="material-symbols-outlined text-amber-500">bolt</span><span
                                 x-show="DLN.LRR() > 0.8"
-                                class="material-symbols-outlined text-green-500">check</span></label>
+                                class="material-symbols-outlined text-white">check</span></label>
                         <div class="calculated-value" x-text="DLN.r(DLN.LRR())"></div>
                     </div>
                 </div>
