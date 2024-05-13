@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LCF</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>    
     <style type="text/tailwindcss">
         @layer utilities {
+
             input {
                 @apply px-1 w-full border border-slate-300 text-red-800;
             }
@@ -32,6 +34,7 @@
             .calculated-value {
                 @apply text-white font-semibold;
             }
+
         }
     </style>
     <link rel="stylesheet"
@@ -81,16 +84,13 @@
                         <div><input type="number" x-model="DLN.N"></div>
                     </div>
                     <div>
-                        <label>Diameter[cm]</label>
+                        <label>Diameter D[cm]</label>
                         <div><input type="number" x-model="DLN.D"></div>
                     </div>
                     <div>
                         <label>Length L[cm]</label>
                         <div><input type="number" x-model="DLN.L"></div>
                     </div>
-
-
-
                     <div>
                         <label>Induktance L[µH]</label>
                         <div class="calculated-value" x-text="DLN.r(DLN.ToL())"></div>
