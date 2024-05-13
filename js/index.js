@@ -16,7 +16,6 @@ window.App = () => {
                 const Fh = this.Fh * 1.0
                 const k = Fh / Fl
                 return k
-
             },
             C() {
                 const Fl = this.Fl * 1.0
