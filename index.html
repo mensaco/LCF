@@ -9,10 +9,10 @@
     <style type="text/tailwindcss">
         @layer utilities {
             input {
-                @apply p-1 w-full border border-slate-300 text-xl text-red-800;
+                @apply px-1 w-full border border-slate-300 text-red-800;
             }
             label{
-                @apply  text-white/50 mb-1 block;
+                @apply  text-white/70 mb-1 block;
             }
             .card{
                 @apply p-3 bg-black/90 border border-slate-300 w-full md:w-[23rem];
@@ -23,11 +23,14 @@
             }
 
             .card .title {
-                @apply text-xl px-3 py-1 text-white/90;
+                @apply px-3 py-1 text-white/90;
             }
 
             .bg-tiled{
                 background-image: url(/img/bg-tiled.bmp);
+            }
+            .calculated-value {
+                @apply text-green-300 font-semibold;
             }
         }
     </style>
@@ -35,15 +38,15 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body class="bg-black/80 bg-tiled">
+<body class="bg-black/80 bg-tiled relative">
 
-    <div class="" x-data="App()">
+    <div class="h-screen" x-data="App()">
 
         <div class="flex flex-wrap items-stretch gap-3 p-3">
 
             <div class="card">
                 <div>
-                    <img src="/img/LCdC.png" class="border p-1" alt="">
+                    <img src="/img/LCdC.png" class="border p-1" alt="" @click="imageSrc = '/img/LCdC.png'; showImage = true">
                     <div class="title">F, dF, ΔC &Implies; C, L</div>
                     <div>
                         <label>Lower Frequency Fl[MHz]</label>
@@ -60,12 +63,12 @@
 
                     <div>
                         <label>Fixed Parallel Capacitance C[pF]</label>
-                        <div class="text-xl text-red-800 font-semibold" x-text="dCFdF.r(dCFdF.C())"></div>
+                        <div class="calculated-value" x-text="dCFdF.r(dCFdF.C())"></div>
                     </div>
 
                     <div>
                         <label>Inductance L[µH]</label>
-                        <div class="text-xl text-red-800 font-semibold" x-text="dCFdF.r(dCFdF.L())"></div>
+                        <div class="calculated-value" x-text="dCFdF.r(dCFdF.L())"></div>
                     </div>
                 </div>
             </div>
@@ -90,7 +93,7 @@
 
                     <div>
                         <label>Induktance L[µH]</label>
-                        <div class="text-xl text-red-800 font-semibold" x-text="DLN.r(DLN.ToL())"></div>
+                        <div class="calculated-value" x-text="DLN.r(DLN.ToL())"></div>
                     </div>
 
                     <div>
@@ -98,14 +101,14 @@
                                 class="material-symbols-outlined text-amber-500">bolt</span><span
                                 x-show="DLN.LRR() > 0.8"
                                 class="material-symbols-outlined text-green-500">check</span></label>
-                        <div class="text-xl text-red-800 font-semibold" x-text="DLN.r(DLN.LRR())"></div>
+                        <div class="calculated-value" x-text="DLN.r(DLN.LRR())"></div>
                     </div>
                 </div>
             </div>
 
             <div class="card">
                 <div>
-                    <img src="/img/Vackarz.png" class="border p-1" alt="">
+                    <img src="/img/Vackarz.png" class="border p-1" alt="" @click="imageSrc = '/img/Vackarz.png'; showImage = true">
                     <div class="title">Vackarz</div>
                     <div>
                         <label>Induktance L[µH]</label>
@@ -122,21 +125,25 @@
                     <div>
                         <label>C3[pF]</label>
                         <div class="flex justify-between items-center gap-3">
-                            <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.C3())"></div>
+                            <div class="calculated-value" x-text="VZ.r(VZ.C3())"></div>
                             <input type="text" x-model="VZ.C3M" class="w-64" placeholder="E12 approximation">
                         </div>
                     </div>
                     <div>
                         <label>Ce[pF]</label>
-                        <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.Ce())"></div>
+                        <div class="calculated-value" x-text="VZ.r(VZ.Ce())"></div>
                     </div>
                     <div>
                         <label>F[MHz]</label>
-                        <div class="text-xl text-red-800 font-semibold" x-text="VZ.r(VZ.F())"></div>
+                        <div class="calculated-value" x-text="VZ.r(VZ.F())"></div>
                     </div>
                 </div>
             </div>
 
+        </div>
+
+        <div x-show="showImage" class="fixed left-0 top-0 right-0 bottom-0 bg-[rgba(1,1,1,0.75)] flex items-center justify-center">
+            <img :src="imageSrc" class="border-[1vh] border-white p-[1vh] bg-black" @click="showImage = false">
         </div>
 
     </div>

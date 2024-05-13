@@ -2,13 +2,14 @@
 
 window.App = () => {
     return {
-
+        showImage: false,
+        imageSrc: '',
         'dCFdF': {
             r(x) {
                 return Math.round(x * 100.0 + 0.4999) / 100.0
             },
-            'Fl': Alpine.$persist(3.5),
-            'Fh': Alpine.$persist(0.3),
+            'Fl': Alpine.$persist(3.4),
+            'Fh': Alpine.$persist(3.9),
             'dC': Alpine.$persist(30),
             k() {
                 const Fl = this.Fl * 1.0
@@ -35,9 +36,9 @@ window.App = () => {
             r(x) {
                 return Math.round(x * 100.0 + 0.4999) / 100.0
             },
-            'N': Alpine.$persist(1),
-            'D': Alpine.$persist(1),
-            'L': Alpine.$persist(1),
+            'N': Alpine.$persist(24),
+            'D': Alpine.$persist(3.4),
+            'L': Alpine.$persist(3.4),
             ToL() {
                 const r = this.D * 1.0 / 2.0 / 2.54
                 const l = this.L * 1.0 / 2.54
@@ -55,12 +56,12 @@ window.App = () => {
             r(x) {
                 return Math.round(x * 100.0 + 0.4999) / 100.0
             },
-            C1: Alpine.$persist(1),
-            C2: Alpine.$persist(1),
+            C1: Alpine.$persist(33),
+            C2: Alpine.$persist(510),
             C3() {
                 return this.C1 * 6.0;
             },
-            C3M:Alpine.$persist(1),
+            C3M:Alpine.$persist(220),
             Ce() {
                 const c1 = this.C1 * 1.0
                 const c2 = this.C2 * 1.0
@@ -69,7 +70,7 @@ window.App = () => {
                 const ce = c2 + c1 * c3 / (c1 + c3)
                 return ce
             },
-            L: Alpine.$persist(1),
+            L: Alpine.$persist(4.0),
             F() {
                 const l = this.L * 1.0
                 const ce = this.Ce()
