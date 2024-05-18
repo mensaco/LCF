@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LCF</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>    
+    <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
         @layer utilities {
 
@@ -49,7 +49,8 @@
 
             <div class="card">
                 <div>
-                    <img src="/img/LCdC.png" class="border p-1" alt="" @click="imageSrc = '/img/LCdC.png'; showImage = true">
+                    <img src="/img/LCdC.png" class="border p-1" alt=""
+                        @click="imageSrc = '/img/LCdC.png'; showImage = true">
                     <div class="title">F, dF, ΔC &Implies; C, L</div>
                     <div>
                         <label>Lower Frequency Fl[MHz]</label>
@@ -108,7 +109,8 @@
 
             <div class="card">
                 <div>
-                    <img src="/img/Vackarz.png" class="border p-1" alt="" @click="imageSrc = '/img/Vackarz.png'; showImage = true">
+                    <img src="/img/Vackarz.png" class="border p-1" alt=""
+                        @click="imageSrc = '/img/Vackarz.png'; showImage = true">
                     <div class="title">Vackarz</div>
                     <div>
                         <label>Induktance L[µH]</label>
@@ -140,9 +142,34 @@
                 </div>
             </div>
 
+            <div class="card">
+                <div>
+                    <img src="/svg/air_capacitor.svg" class="border p-1" alt=""
+                            @click="imageSrc = '/svg/air_capacitor.svg'; showImage = true">
+                    <div class="title">Air Capacitor</div>
+                    <div>
+                        <label>Inner radius r[mm]</label>
+                        <div><input type="number" x-model="SC.rad"></div>
+                    </div>
+                    <div>
+                        <label>Outer radius R[mm]</label>
+                        <div><input type="number" x-model="SC.Rad"></div>
+                    </div>
+                    <div>
+                        <label>Gap between the plates d[mm]</label>
+                        <div><input type="number" x-model="SC.gap"></div>
+                    </div>
+                    <div>
+                        <label>Capacitance C[pF]</label>
+                        <div class="calculated-value" x-text="SC.r(SC.C())"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div x-show="showImage" class="fixed left-0 top-0 right-0 bottom-0 bg-[rgba(1,1,1,0.75)] flex items-center justify-center">
+        <div x-show="showImage"
+            class="fixed left-0 top-0 right-0 bottom-0 bg-[rgba(1,1,1,0.75)] flex items-center justify-center">
             <img :src="imageSrc" class="border-[1vh] border-white p-[1vh] bg-black" @click="showImage = false">
         </div>
 

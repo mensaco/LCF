@@ -60,11 +60,11 @@ window.App = () => {
             C3() {
                 return this.C1 * 6.0;
             },
-            C3M:Alpine.$persist(220),
+            C3M: Alpine.$persist(220),
             Ce() {
                 const c1 = this.C1 * 1.0
                 const c2 = this.C2 * 1.0
-                const c3 = this.C3M ? this.C3M*1.0 : this.C3() * 1.0
+                const c3 = this.C3M ? this.C3M * 1.0 : this.C3() * 1.0
 
                 const ce = c2 + c1 * c3 / (c1 + c3)
                 return ce
@@ -77,6 +77,19 @@ window.App = () => {
                 return f
             }
 
+        },
+        'SC': { // air capacitance between two metal plates (half discs)
+            r(x) {
+                return Math.round(x * 100.0 + 0.4999) / 100.0
+            },
+            rad: Alpine.$persist(5), // inner radius in mm
+            Rad: Alpine.$persist(50), // outer radius in mm
+            gap: Alpine.$persist(1), // gap between the plates radius in mm
+            eps: 8.854e-12, // air permitivity
+            C() {
+                const retv = 1e9 * this.eps * (this.Rad * this.Rad - this.rad * this.rad) * 3.1415 / 2.0 / this.gap
+                return retv
+            }
         }
 
     }
