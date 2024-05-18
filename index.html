@@ -166,6 +166,34 @@
                 </div>
             </div>
 
+            <div class="card">
+                <div>
+
+                    <img src="/img/PulleysAndBelt.png" class="border p-1" alt=""
+                            @click="imageSrc = '/img/PulleysAndBelt.png'; showImage = true">
+
+                    <div class="title">Belt length</div>
+                    <div>
+                        <label>Large pulley radius Rl[mm]</label>
+                        <div><input type="number" x-model="PB.rl"></div>
+                    </div>
+                    <div>
+                        <label>Small pulley radius Rs[mm]</label>
+                        <div><input type="number" x-model="PB.rs"></div>
+                    </div>
+                    <div>
+                        <label>Pulley centers distance d[mm]</label>
+                        <div><input type="number" x-model="PB.d"></div>
+                    </div>
+
+                    <div>
+                        <label>Belt length L[mm]</label>
+                        <div class="calculated-value" x-text="PB.r(PB.L())"></div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
 
         <div x-show="showImage"

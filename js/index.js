@@ -90,6 +90,27 @@ window.App = () => {
                 const retv = 1e9 * this.eps * (this.Rad * this.Rad - this.rad * this.rad) * 3.1415 / 2.0 / this.gap
                 return retv
             }
+        },
+        'PB': { // length of the belt around two pulleys with radii rl (large) and rs (small), which centers are at a distance d appart
+            r(x) {
+                return Math.round(x * 100.0 + 0.4999) / 100.0
+            },
+            rl: Alpine.$persist(10), // radius of the first pulley
+            rs: Alpine.$persist(2), // radius of the second pulley
+            d: Alpine.$persist(20), // distance between the two pulley centers
+            L() {
+                const dl = this.rl * 2.0
+                const ds = this.rs * 2.0
+                const l = this.d * 1.0
+                const dp = dl+ds
+                const dm = dl-ds
+                const sq = 2.0 * Math.sqrt(l*l -dm*dm/4)
+                const an = dm*Math.asin(dm/2.0/l)
+                const ss = dp*Math.PI/2
+                return ss+an+sq                
+            }
+
+
         }
 
     }
